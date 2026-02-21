@@ -873,54 +873,23 @@
             padding: 0 24px;
         }
 
-        .video-thumb {
-            display: block;
+        .video-container {
             position: relative;
             width: 100%;
+            padding-bottom: 56.25%;
             border-radius: 16px;
             overflow: hidden;
             border: 1px solid rgba(181, 55, 242, 0.2);
             box-shadow: 0 0 60px rgba(181, 55, 242, 0.15), 0 0 120px rgba(255, 45, 149, 0.05);
-            transition: transform 0.3s, box-shadow 0.3s;
         }
 
-        .video-thumb:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 0 80px rgba(181, 55, 242, 0.25), 0 0 140px rgba(255, 45, 149, 0.1);
-        }
-
-        .video-thumb img {
-            width: 100%;
-            display: block;
-            aspect-ratio: 16 / 9;
-            object-fit: cover;
-        }
-
-        .video-play-btn {
+        .video-container iframe {
             position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 72px;
-            height: 72px;
-            background: rgba(181, 55, 242, 0.85);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: background 0.3s, transform 0.3s;
-        }
-
-        .video-thumb:hover .video-play-btn {
-            background: rgba(255, 45, 149, 0.9);
-            transform: translate(-50%, -50%) scale(1.1);
-        }
-
-        .video-play-btn svg {
-            width: 28px;
-            height: 28px;
-            fill: #fff;
-            margin-left: 4px;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: 0;
         }
 
         .video-label {
@@ -1105,12 +1074,15 @@
     <section class="video-section" id="video">
         <div class="video-wrapper reveal">
             <p class="video-label">See us live</p>
-            <a href="https://www.youtube.com/watch?v=t76Tdl20HU8" target="_blank" rel="noopener" class="video-thumb" aria-label="Watch Cassette Unlimited live performance on YouTube">
-                <img src="https://img.youtube.com/vi/t76Tdl20HU8/maxresdefault.jpg" alt="Cassette Unlimited live performance video thumbnail" loading="lazy">
-                <div class="video-play-btn">
-                    <svg viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"/></svg>
-                </div>
-            </a>
+            <div class="video-container">
+                <iframe
+                    src="https://www.youtube.com/embed/t76Tdl20HU8?rel=0&modestbranding=1"
+                    title="Cassette Unlimited — Live Performance"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowfullscreen
+                    loading="lazy"
+                ></iframe>
+            </div>
         </div>
     </section>
 
