@@ -15,11 +15,13 @@
     <meta property="og:url" content="https://cassetteunlimited.com">
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="Cassette Unlimited">
+    <meta property="og:image" content="https://cassetteunlimited.com/images/CassetteUnlimited_BandPicture.jpg">
 
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Cassette Unlimited | NYC's Premier 80s & 70s Cover Band">
     <meta name="twitter:description" content="Your New York Band singing your favorite 70s and 80s tunes. Live shows in NYC.">
+    <meta name="twitter:image" content="https://cassetteunlimited.com/images/CassetteUnlimited_BandPicture.jpg">
 
     <!-- Structured Data for SEO -->
     <script type="application/ld+json">
@@ -449,7 +451,7 @@
            ABOUT SECTION
            ============================================= */
         #about {
-            background: linear-gradient(180deg, var(--dark-bg) 0%, rgba(15, 10, 30, 1) 100%);
+            background: linear-gradient(180deg, rgba(15, 10, 30, 1) 0%, var(--darker-bg) 100%);
         }
 
         .about-content {
@@ -501,7 +503,7 @@
            SHOWS SECTION
            ============================================= */
         #shows {
-            background: linear-gradient(180deg, rgba(15, 10, 30, 1) 0%, var(--dark-bg) 100%);
+            background: linear-gradient(180deg, var(--dark-bg) 0%, rgba(15, 10, 30, 1) 100%);
         }
 
         .shows-grid {
@@ -855,6 +857,113 @@
             opacity: 1;
             transform: translateY(0);
         }
+
+        /* =============================================
+           VIDEO SECTION (below hero)
+           ============================================= */
+        .video-section {
+            padding: 40px 0 60px;
+            background: linear-gradient(180deg, var(--dark-bg) 0%, rgba(15, 10, 30, 1) 50%, var(--dark-bg) 100%);
+        }
+
+        .video-wrapper {
+            max-width: 560px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        .video-container {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%; /* 16:9 */
+            border-radius: 16px;
+            overflow: hidden;
+            border: 1px solid rgba(181, 55, 242, 0.2);
+            box-shadow: 0 0 60px rgba(181, 55, 242, 0.15), 0 0 120px rgba(255, 45, 149, 0.05);
+        }
+
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+
+        .video-label {
+            text-align: center;
+            margin-bottom: 20px;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 0.7rem;
+            font-weight: 700;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            color: var(--neon-pink);
+        }
+
+        /* =============================================
+           BAND PHOTO IN ABOUT
+           ============================================= */
+        .band-photo-wrapper {
+            margin-top: 40px;
+        }
+
+        .band-photo {
+            width: 100%;
+            max-width: 700px;
+            margin: 0 auto;
+            display: block;
+            border-radius: 16px;
+            border: 1px solid rgba(181, 55, 242, 0.2);
+            box-shadow: 0 0 40px rgba(181, 55, 242, 0.1);
+        }
+
+        /* =============================================
+           ABOUT PHOTO GRID
+           ============================================= */
+        .about-photos {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-top: 40px;
+        }
+
+        .about-photos img {
+            width: 100%;
+            height: 280px;
+            object-fit: cover;
+            border-radius: 12px;
+            border: 1px solid rgba(181, 55, 242, 0.2);
+            box-shadow: 0 0 30px rgba(181, 55, 242, 0.1);
+        }
+
+        @media (max-width: 600px) {
+            .about-photos {
+                grid-template-columns: 1fr;
+            }
+            .about-photos img {
+                height: 220px;
+            }
+        }
+
+        /* =============================================
+           CONTACT BAND PHOTO
+           ============================================= */
+        .contact-photo-wrapper {
+            margin-bottom: 32px;
+        }
+
+        .contact-photo {
+            width: 160px;
+            height: 160px;
+            object-fit: cover;
+            border-radius: 50%;
+            border: 2px solid rgba(181, 55, 242, 0.3);
+            box-shadow: 0 0 30px rgba(181, 55, 242, 0.15);
+            display: block;
+            margin: 0 auto;
+        }
     </style>
 </head>
 <body>
@@ -871,8 +980,8 @@
         <div class="nav-inner">
             <a href="#" class="nav-logo">Cassette Unlimited</a>
             <ul class="nav-links" id="navLinks">
-                <li><a href="#about">About</a></li>
                 <li><a href="#shows">Shows</a></li>
+                <li><a href="#about">About</a></li>
                 <li><a href="#contact">Contact</a></li>
             </ul>
             <button class="nav-hamburger" id="hamburger" aria-label="Toggle navigation">
@@ -896,37 +1005,7 @@
         <div class="hero-scroll-hint"><span></span></div>
     </section>
 
-    <!-- About -->
-    <section id="about">
-        <div class="container">
-            <div class="section-header reveal">
-                <h2>About the Band</h2>
-                <div class="section-divider"></div>
-            </div>
-            <div class="about-content reveal">
-                <p>
-                    <strong>Cassette Unlimited</strong> is New York City's go-to 70s and 80s cover band.
-                    We bring the neon-lit energy of the golden era of music to stages across Manhattan &mdash;
-                    from classic rock anthems and new wave deep cuts to disco floor-fillers and power ballads.
-                </p>
-                <p>
-                    Every show is a throwback experience you won't forget. Press play, rewind, repeat.
-                </p>
-                <div class="about-genres">
-                    <span class="genre-tag">Classic Rock</span>
-                    <span class="genre-tag">New Wave</span>
-                    <span class="genre-tag">80s Pop</span>
-                    <span class="genre-tag">Disco</span>
-                    <span class="genre-tag">Power Ballads</span>
-                    <span class="genre-tag">Synth Pop</span>
-                    <span class="genre-tag">70s Rock</span>
-                    <span class="genre-tag">Funk</span>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Shows -->
+    <!-- Shows (first — this is what people come for) -->
     <section id="shows">
         <div class="container">
             <div class="section-header reveal">
@@ -986,10 +1065,63 @@
         </div>
     </section>
 
+    <!-- Video Teaser -->
+    <section class="video-section" id="video">
+        <div class="video-wrapper reveal">
+            <p class="video-label">See us live</p>
+            <div class="video-container">
+                <iframe
+                    src="https://www.youtube-nocookie.com/embed/t76Tdl20HU8?rel=0&modestbranding=1"
+                    title="Cassette Unlimited — Live Performance Teaser"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowfullscreen
+                    loading="lazy"
+                ></iframe>
+            </div>
+        </div>
+    </section>
+
+    <!-- About -->
+    <section id="about">
+        <div class="container">
+            <div class="section-header reveal">
+                <h2>About the Band</h2>
+                <div class="section-divider"></div>
+            </div>
+            <div class="about-content reveal">
+                <p>
+                    <strong>Cassette Unlimited</strong> is New York City's go-to 70s and 80s cover band.
+                    We bring the neon-lit energy of the golden era of music to stages across Manhattan &mdash;
+                    from classic rock anthems and new wave deep cuts to disco floor-fillers and power ballads.
+                </p>
+                <p>
+                    Every show is a throwback experience you won't forget. Press play, rewind, repeat.
+                </p>
+                <div class="about-photos">
+                    <img src="images/CassetteUnlimited_BandPicture.jpg" alt="Cassette Unlimited band photo at Connolly's Klub 45 in NYC" loading="lazy">
+                    <img src="images/cassetteunlimited_liveshow_picture.jpg" alt="Cassette Unlimited performing live with stage lights and bubbles" loading="lazy">
+                </div>
+                <div class="about-genres">
+                    <span class="genre-tag">Classic Rock</span>
+                    <span class="genre-tag">New Wave</span>
+                    <span class="genre-tag">80s Pop</span>
+                    <span class="genre-tag">Disco</span>
+                    <span class="genre-tag">Power Ballads</span>
+                    <span class="genre-tag">Synth Pop</span>
+                    <span class="genre-tag">70s Rock</span>
+                    <span class="genre-tag">Funk</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Contact -->
     <section id="contact">
         <div class="container">
             <div class="contact-content reveal">
+                <div class="contact-photo-wrapper">
+                    <img src="images/CassetteUnlimited_BandPicture.jpg" alt="Cassette Unlimited" class="contact-photo" width="160" height="160" loading="lazy">
+                </div>
                 <h2>Get In Touch</h2>
                 <div class="contact-links">
                     <a href="mailto:info@cassetteunlimited.com" class="contact-link">
