@@ -1,0 +1,662 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meet the Band | Cassette Unlimited — NYC's Premier 80s & 70s Cover Band</title>
+    <meta name="description" content="Meet the members of Cassette Unlimited — New York City's premier 70s and 80s cover band. Vocalists, guitarists, bassist, drummer, and keys.">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://cassetteunlimited.com/band">
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="Meet the Band | Cassette Unlimited">
+    <meta property="og:description" content="Meet the members of Cassette Unlimited — NYC's premier 70s and 80s cover band.">
+    <meta property="og:url" content="https://cassetteunlimited.com/band">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Cassette Unlimited">
+    <meta property="og:image" content="https://cassetteunlimited.com/images/CassetteUnlimited_BandPicture.jpg">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        /* =============================================
+           CSS RESET & BASE (shared with index.html)
+           ============================================= */
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+        :root {
+            --neon-pink: #ff2d95;
+            --neon-blue: #00d4ff;
+            --neon-purple: #b537f2;
+            --neon-magenta: #ff00ff;
+            --hot-pink: #ff69b4;
+            --chrome-silver: #c0c0c0;
+            --dark-bg: #0a0a12;
+            --darker-bg: #06060c;
+            --card-bg: rgba(15, 15, 30, 0.85);
+            --text-primary: #f0e6ff;
+            --text-secondary: #a89cc8;
+            --grid-line: rgba(0, 212, 255, 0.08);
+        }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Rajdhani', sans-serif;
+            background: var(--dark-bg);
+            color: var(--text-primary);
+            min-height: 100vh;
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        /* =============================================
+           ANIMATED BACKGROUND
+           ============================================= */
+        .bg-grid {
+            position: fixed;
+            inset: 0;
+            z-index: 0;
+            overflow: hidden;
+            pointer-events: none;
+        }
+
+        .bg-grid::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background:
+                linear-gradient(var(--grid-line) 1px, transparent 1px),
+                linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
+            background-size: 60px 60px;
+            animation: gridScroll 20s linear infinite;
+        }
+
+        .bg-grid::after {
+            content: '';
+            position: absolute;
+            bottom: -50%;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 200%;
+            height: 100%;
+            background: radial-gradient(ellipse at center, rgba(181, 55, 242, 0.12) 0%, transparent 60%);
+        }
+
+        @keyframes gridScroll {
+            0% { transform: translateY(0); }
+            100% { transform: translateY(60px); }
+        }
+
+        .scanlines {
+            position: fixed;
+            inset: 0;
+            z-index: 1;
+            pointer-events: none;
+            background: repeating-linear-gradient(
+                0deg,
+                transparent,
+                transparent 2px,
+                rgba(0, 0, 0, 0.03) 2px,
+                rgba(0, 0, 0, 0.03) 4px
+            );
+        }
+
+        /* =============================================
+           LAYOUT
+           ============================================= */
+        .content-wrapper {
+            position: relative;
+            z-index: 2;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* =============================================
+           NAVIGATION
+           ============================================= */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            background: rgba(6, 6, 12, 0.92);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(181, 55, 242, 0.2);
+            transition: box-shadow 0.3s;
+        }
+
+        nav.scrolled {
+            box-shadow: 0 0 30px rgba(181, 55, 242, 0.15);
+        }
+
+        .nav-inner {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 24px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 64px;
+        }
+
+        .nav-logo {
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 900;
+            font-size: 1.1rem;
+            letter-spacing: 2px;
+            background: linear-gradient(135deg, var(--neon-blue), var(--neon-purple));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 32px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.95rem;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: var(--neon-blue);
+        }
+
+        .nav-hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+            background: none;
+            border: none;
+            padding: 4px;
+        }
+
+        .nav-hamburger span {
+            display: block;
+            width: 26px;
+            height: 2px;
+            background: var(--neon-blue);
+            border-radius: 2px;
+            transition: transform 0.3s, opacity 0.3s;
+        }
+
+        /* =============================================
+           PAGE HEADER
+           ============================================= */
+        .page-header {
+            padding: 140px 24px 60px;
+            text-align: center;
+        }
+
+        .page-header h1 {
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 900;
+            font-size: clamp(2rem, 6vw, 3.2rem);
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            background: linear-gradient(135deg, var(--neon-blue), var(--neon-purple));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 12px;
+        }
+
+        .page-header p {
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+            letter-spacing: 2px;
+        }
+
+        .section-divider {
+            width: 80px;
+            height: 3px;
+            margin: 16px auto 0;
+            background: linear-gradient(90deg, var(--neon-blue), var(--neon-purple), var(--neon-pink));
+            border-radius: 2px;
+        }
+
+        /* =============================================
+           BAND MEMBERS GRID
+           ============================================= */
+        .members-section {
+            padding: 20px 0 80px;
+        }
+
+        .members-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 28px;
+            max-width: 960px;
+            margin: 0 auto;
+        }
+
+        .member-card {
+            background: var(--card-bg);
+            border: 1px solid rgba(181, 55, 242, 0.15);
+            border-radius: 16px;
+            padding: 32px 24px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.3s, border-color 0.3s, box-shadow 0.3s;
+        }
+
+        .member-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--neon-blue), var(--neon-purple), var(--neon-pink));
+        }
+
+        .member-card:hover {
+            transform: translateY(-4px);
+            border-color: rgba(181, 55, 242, 0.3);
+            box-shadow: 0 20px 60px rgba(181, 55, 242, 0.1);
+        }
+
+        .member-placeholder {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            border: 2px solid rgba(181, 55, 242, 0.3);
+            box-shadow: 0 0 25px rgba(181, 55, 242, 0.15);
+            margin: 0 auto 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(181, 55, 242, 0.05);
+        }
+
+        .member-placeholder svg {
+            width: 48px;
+            height: 48px;
+            fill: rgba(181, 55, 242, 0.3);
+        }
+
+        .member-name {
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 700;
+            font-size: 0.95rem;
+            letter-spacing: 1px;
+            color: var(--text-primary);
+            margin-bottom: 4px;
+        }
+
+        .member-role {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 0.6rem;
+            font-weight: 700;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--neon-pink);
+            margin-bottom: 14px;
+        }
+
+        .member-bio {
+            font-size: 0.9rem;
+            line-height: 1.6;
+            color: var(--text-secondary);
+            margin-bottom: 16px;
+        }
+
+        .member-socials {
+            display: flex;
+            justify-content: center;
+            gap: 14px;
+        }
+
+        .member-socials a {
+            color: var(--text-secondary);
+            transition: color 0.3s;
+        }
+
+        .member-socials a:hover {
+            color: var(--neon-blue);
+        }
+
+        .member-socials svg {
+            width: 20px;
+            height: 20px;
+            fill: currentColor;
+        }
+
+        /* =============================================
+           CONTACT / FOOTER
+           ============================================= */
+        #contact {
+            padding: 60px 0;
+            background: var(--darker-bg);
+            border-top: 1px solid rgba(181, 55, 242, 0.1);
+        }
+
+        .contact-content {
+            text-align: center;
+        }
+
+        .contact-content h2 {
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 900;
+            font-size: 1.6rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            background: linear-gradient(135deg, var(--neon-blue), var(--neon-purple));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 24px;
+        }
+
+        .contact-links {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 32px;
+            flex-wrap: wrap;
+        }
+
+        .contact-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 1rem;
+            letter-spacing: 1px;
+            transition: color 0.3s;
+        }
+
+        .contact-link:hover {
+            color: var(--neon-blue);
+        }
+
+        .contact-link svg {
+            width: 20px;
+            height: 20px;
+            fill: currentColor;
+        }
+
+        footer {
+            text-align: center;
+            padding: 24px;
+            background: var(--darker-bg);
+            border-top: 1px solid rgba(181, 55, 242, 0.05);
+        }
+
+        footer p {
+            font-size: 0.8rem;
+            color: rgba(168, 156, 200, 0.5);
+            letter-spacing: 2px;
+        }
+
+        /* =============================================
+           SCROLL REVEAL
+           ============================================= */
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.8s, transform 0.8s;
+        }
+
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* =============================================
+           RESPONSIVE
+           ============================================= */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 64px;
+                left: 0;
+                right: 0;
+                flex-direction: column;
+                background: rgba(6, 6, 12, 0.98);
+                backdrop-filter: blur(20px);
+                -webkit-backdrop-filter: blur(20px);
+                padding: 24px;
+                gap: 20px;
+                border-bottom: 1px solid rgba(181, 55, 242, 0.2);
+            }
+
+            .nav-links.open {
+                display: flex;
+            }
+
+            .nav-hamburger {
+                display: flex;
+            }
+
+            .nav-hamburger.active span:nth-child(1) {
+                transform: rotate(45deg) translate(5px, 5px);
+            }
+            .nav-hamburger.active span:nth-child(2) {
+                opacity: 0;
+            }
+            .nav-hamburger.active span:nth-child(3) {
+                transform: rotate(-45deg) translate(5px, -5px);
+            }
+
+            .members-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        @media (max-width: 520px) {
+            .members-grid {
+                grid-template-columns: 1fr;
+                max-width: 360px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<!-- Animated Background -->
+<div class="bg-grid"></div>
+<div class="scanlines"></div>
+
+<!-- Content -->
+<div class="content-wrapper">
+
+    <!-- Navigation -->
+    <nav id="navbar">
+        <div class="nav-inner">
+            <a href="index.html" class="nav-logo">Cassette Unlimited</a>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="index.html#shows">Shows</a></li>
+                <li><a href="band.html" class="active">Band</a></li>
+                <li><a href="index.html#about">About</a></li>
+                <li><a href="index.html#contact">Contact</a></li>
+            </ul>
+            <button class="nav-hamburger" id="hamburger" aria-label="Toggle navigation">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <div class="page-header">
+        <h1>Meet the Band</h1>
+        <p>The faces behind the sound</p>
+        <div class="section-divider"></div>
+    </div>
+
+    <!-- Members -->
+    <section class="members-section">
+        <div class="container">
+            <div class="members-grid">
+
+                <!-- Virginie Marine -->
+                <div class="member-card reveal">
+                    <div class="member-placeholder"><svg viewBox="0 0 24 24"><path d="M12 12c2.7 0 4.8-2.1 4.8-4.8S14.7 2.4 12 2.4 7.2 4.5 7.2 7.2 9.3 12 12 12zm0 2.4c-3.2 0-9.6 1.6-9.6 4.8v2.4h19.2v-2.4c0-3.2-6.4-4.8-9.6-4.8z"/></svg></div>
+                    <div class="member-name">Virginie Marine</div>
+                    <div class="member-role">Lead Vocals</div>
+                    <p class="member-bio">Born in Belgium, raised in southern France, and now electrifying stages across New York City. Virginie is a force of nature with a rare, sweeping vocal range and over 25 years of live performance across the U.S. and Europe. She can channel C&eacute;line Dion one moment and Ann Wilson of Heart the next, with a magnetic stage presence and an uncanny ability to connect with every person in the room. From pop anthems and soulful ballads to hard-hitting rock and disco floor-fillers, there&rsquo;s no genre she can&rsquo;t own. A two-time album artist and winner of multiple singing competitions, Virginie performs in English, French, Spanish, and Italian.</p>
+                    <div class="member-socials">
+                        <a href="https://instagram.com/virginiemarinemusic" target="_blank" rel="noopener" title="Instagram">
+                            <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+                        </a>
+                        <a href="https://virginiemarine.com" target="_blank" rel="noopener" title="Website">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Juliet Markowitz -->
+                <div class="member-card reveal">
+                    <div class="member-placeholder"><svg viewBox="0 0 24 24"><path d="M12 12c2.7 0 4.8-2.1 4.8-4.8S14.7 2.4 12 2.4 7.2 4.5 7.2 7.2 9.3 12 12 12zm0 2.4c-3.2 0-9.6 1.6-9.6 4.8v2.4h19.2v-2.4c0-3.2-6.4-4.8-9.6-4.8z"/></svg></div>
+                    <div class="member-name">Juliet Markowitz</div>
+                    <div class="member-role">Lead Vocals</div>
+                    <p class="member-bio">A versatile NYC-based singer, actress, and cabaret artist, Juliet brings stage presence and vocal depth to every performance. Her theatrical background and dynamic range make her the perfect partner for the band's biggest anthems.</p>
+                    <div class="member-socials">
+                        <a href="https://instagram.com/julietnyc" target="_blank" rel="noopener" title="Instagram">
+                            <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Matt Scharfglass -->
+                <div class="member-card reveal">
+                    <div class="member-placeholder"><svg viewBox="0 0 24 24"><path d="M12 12c2.7 0 4.8-2.1 4.8-4.8S14.7 2.4 12 2.4 7.2 4.5 7.2 7.2 9.3 12 12 12zm0 2.4c-3.2 0-9.6 1.6-9.6 4.8v2.4h19.2v-2.4c0-3.2-6.4-4.8-9.6-4.8z"/></svg></div>
+                    <div class="member-name">Matt Scharfglass</div>
+                    <div class="member-role">Bass &amp; Guitar</div>
+                    <p class="member-bio">Award-winning multi-instrumentalist who's played everything from symphonic metal with Trans-Siberian Orchestra to R&amp;B with Ashford &amp; Simpson. Matt is also the guitarist/bassist for New York Rangers home games at Madison Square Garden and the author of a dozen bass and guitar instructional books.</p>
+                    <div class="member-socials">
+                        <a href="https://www.facebook.com/share/17GHmckrM3/" target="_blank" rel="noopener" title="Facebook">
+                            <svg viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+                        </a>
+                        <a href="https://www.mattplaysbass.com" target="_blank" rel="noopener" title="Website">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Tom Curiano -->
+                <div class="member-card reveal">
+                    <div class="member-placeholder"><svg viewBox="0 0 24 24"><path d="M12 12c2.7 0 4.8-2.1 4.8-4.8S14.7 2.4 12 2.4 7.2 4.5 7.2 7.2 9.3 12 12 12zm0 2.4c-3.2 0-9.6 1.6-9.6 4.8v2.4h19.2v-2.4c0-3.2-6.4-4.8-9.6-4.8z"/></svg></div>
+                    <div class="member-name">Tom Curiano</div>
+                    <div class="member-role">Drums &amp; Production</div>
+                    <p class="member-bio">Veteran NYC drummer with extensive touring and recording credits. A long-standing member of the Garland Jeffreys Band, Tom has performed across the U.S., Europe, and Japan with artists including James Maddock, Dana Fuchs, and Popa Chubby. He recently recorded drums for an upcoming album by Ariel Bender of Mott the Hoople. Also a multi-instrumentalist and producer with six independent records to his name.</p>
+                    <div class="member-socials"></div>
+                </div>
+
+                <!-- Chris Chia -->
+                <div class="member-card reveal">
+                    <div class="member-placeholder"><svg viewBox="0 0 24 24"><path d="M12 12c2.7 0 4.8-2.1 4.8-4.8S14.7 2.4 12 2.4 7.2 4.5 7.2 7.2 9.3 12 12 12zm0 2.4c-3.2 0-9.6 1.6-9.6 4.8v2.4h19.2v-2.4c0-3.2-6.4-4.8-9.6-4.8z"/></svg></div>
+                    <div class="member-name">Chris Chia</div>
+                    <div class="member-role">Guitar</div>
+                    <p class="member-bio">Surgeon by day, guitarist by night. Chris brings precision and passion to every riff, proving that rock &amp; roll knows no boundaries.</p>
+                    <div class="member-socials"></div>
+                </div>
+
+                <!-- Adam Narimatsu -->
+                <div class="member-card reveal">
+                    <div class="member-placeholder"><svg viewBox="0 0 24 24"><path d="M12 12c2.7 0 4.8-2.1 4.8-4.8S14.7 2.4 12 2.4 7.2 4.5 7.2 7.2 9.3 12 12 12zm0 2.4c-3.2 0-9.6 1.6-9.6 4.8v2.4h19.2v-2.4c0-3.2-6.4-4.8-9.6-4.8z"/></svg></div>
+                    <div class="member-name">Adam Narimatsu</div>
+                    <div class="member-role">Keys &amp; Piano</div>
+                    <p class="member-bio">A premiere pianist on the NYC scene, Adam blends jazz, blues, and funk with classical chops. Performing professionally since 2011, he's graced stages at the Empire State Building, Plaza Hotel, Lincoln Center, and Bowery Ballroom. Influenced by Oscar Peterson, Brad Mehldau, and Cory Henry.</p>
+                    <div class="member-socials">
+                        <a href="https://www.facebook.com/share/1CUgNXPvu3/" target="_blank" rel="noopener" title="Facebook">
+                            <svg viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+                        </a>
+                        <a href="https://www.adamnarimatsu.com" target="_blank" rel="noopener" title="Website">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact">
+        <div class="container">
+            <div class="contact-content">
+                <h2>Get In Touch</h2>
+                <div class="contact-links">
+                    <a href="mailto:info@cassetteunlimited.com" class="contact-link">
+                        <svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+                        info@cassetteunlimited.com
+                    </a>
+                    <a href="https://instagram.com/cassetteunlimited" target="_blank" rel="noopener" class="contact-link">
+                        <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+                        @cassetteunlimited
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2026 Cassette Unlimited &mdash; New York City</p>
+    </footer>
+
+</div>
+
+<!-- JavaScript -->
+<script>
+    // Hamburger menu
+    const hamburger = document.getElementById('hamburger');
+    const navLinks = document.getElementById('navLinks');
+    hamburger.addEventListener('click', () => {
+        hamburger.classList.toggle('active');
+        navLinks.classList.toggle('open');
+    });
+    navLinks.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => {
+            hamburger.classList.remove('active');
+            navLinks.classList.remove('open');
+        });
+    });
+
+    // Navbar shadow on scroll
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => {
+        navbar.classList.toggle('scrolled', window.scrollY > 50);
+    });
+
+    // Scroll reveal
+    const revealElements = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+                observer.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.15 });
+
+    revealElements.forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>
